@@ -1,0 +1,43 @@
+<!-- CONTENEDOR CELESTE -->
+<tr>
+  <td style="padding:30px 30px 30px 30px; background-color:#d6eff9;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+{% for item in items %}
+      <!-- MINI-NOTICIA {{ loop.index }} -->
+      <tr>
+        <td style="padding:{% if loop.last %}0{% else %}0 0 14px 0{% endif %};">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <!-- Texto + botón -->
+              <td width="55%" valign="center" style="padding:0 14px 0 0;">
+                <div style="font-family:Arial, sans-serif; font-size:18px; line-height:17px; color:#3e3e3e;">
+                  {{ item.text_html | safe }}
+                </div>
+                <div style="height:10px; line-height:10px; font-size:10px;">&nbsp;</div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td bgcolor="#37474a" style="border-radius:2px;">
+                      <a href="{{ item.button_url }}" target="_blank"
+                         style="display:inline-block; padding:8px 12px; font-family:Arial, sans-serif; font-size:12px; color:#ffffff; text-decoration:none; font-weight:700;">
+                        {{ item.button_text }}
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+
+              <!-- Imagen -->
+              <td width="45%" valign="top" style="padding:0;">
+                <img src="{{ item.image_url }}"
+                     alt="{{ item.image_alt }}"
+                     width="240"
+                     style="display:block; width:100%; max-width:240px; height:auto; border:0; border-radius:10px;" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+{% endfor %}
+    </table>
+  </td>
+</tr>

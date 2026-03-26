@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block body %}
+<header class="topbar">
+  <div class="topbar-left">
+    <h1>Viamed Newsletter Builder</h1>
+  </div>
+  <div class="topbar-right">
+    <button id="btn-new-draft" title="Nuevo borrador en blanco">Nuevo</button>
+    <select id="draft-select">
+      <option value="">-- Borradores --</option>
+    </select>
+    <button id="btn-load-draft" title="Cargar borrador">Cargar</button>
+    <button id="btn-delete-draft" title="Eliminar borrador">Eliminar</button>
+    <input type="text" id="draft-title" placeholder="Título del borrador" />
+    <button id="btn-save-draft" class="btn-primary">Guardar</button>
+    <button id="btn-export" class="btn-accent">Exportar HTML</button>
+  </div>
+</header>
+
+<main class="builder-layout">
+  <!-- LEFT PANEL: editor -->
+  <section class="panel-editor" id="panel-editor">
+    <!-- Header section -->
+    <details class="section-group" open>
+      <summary>Cabecera</summary>
+      <div class="form-group">
+        <label>Texto preheader</label>
+        <input type="text" data-header="preheader_text" />
+      </div>
+      <div class="form-group">
+        <label>URL imagen banner</label>
+        <input type="text" data-header="banner_image_url" />
+      </div>
+      <div class="form-group">
+        <label>Alt banner</label>
+        <input type="text" data-header="banner_alt" />
+      </div>
+    </details>
+
+    <!-- Font settings -->
+    <details class="section-group">
+      <summary>Tipografía</summary>
+      <div class="form-group">
+        <label>Nombre de la fuente</label>
+        <input type="text" data-font="font_name" placeholder="Ej: Roboto, Open Sans…" />
+      </div>
+      <div class="form-group">
+        <label>URL de la fuente (Google Fonts u otra)</label>
+        <input type="text" data-font="font_url" placeholder="https://fonts.googleapis.com/css2?family=..." />
+      </div>
+      <p style="font-size:11px; color:#888; padding:0 12px 8px;">
+        Si se deja vacío se usa Arial. Los clientes que no soporten fuentes externas (Gmail, Outlook) usarán Arial como fallback.
+      </p>
+    </details>
+
+    <!-- Blocks -->
+    <div class="section-header">
+      <h2>Bloques</h2>
+      <div class="add-block-row">
+        <select id="block-type-select"></select>
+        <button id="btn-add-block" class="btn-primary">+ Añadir bloque</button>
+      </div>
+    </div>
+    <div id="blocks-list"></div>
+
+    <!-- Footer section -->
+    <details class="section-group">
+      <summary>Pie de página</summary>
+      <div class="form-group">
+        <label>URL logo</label>
+        <input type="text" data-footer="logo_url" />
+      </div>
+      <div class="form-group">
+        <label>Enlace logo</label>
+        <input type="text" data-footer="logo_link" />
+      </div>
+      <div id="social-links-editor"></div>
+      <div class="form-group">
+        <label>URL baja</label>
+        <input type="text" data-footer="unsubscribe_url" />
+      </div>
+      <div class="form-group">
+        <label>Pre-texto baja</label>
+        <input type="text" data-footer="unsubscribe_pretext" />
+      </div>
+      <div class="form-group">
+        <label>Etiqueta baja</label>
+        <input type="text" data-footer="unsubscribe_label" />
+      </div>
+      <div class="form-group">
+        <label>Texto enlace baja</label>
+        <input type="text" data-footer="unsubscribe_text" />
+      </div>
+    </details>
+  </section>
+
+  <!-- RIGHT PANEL: preview -->
+  <section class="panel-preview">
+    <div class="preview-toolbar">
+      <span>Vista previa</span>
+      <button id="btn-refresh-preview">Actualizar</button>
+    </div>
+    <iframe id="preview-iframe" sandbox="allow-same-origin"></iframe>
+  </section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.DRAFT_ID = {{ draft_id | tojson }};
+</script>
+<script src="/static/js/builder.js"></script>
+{% endblock %}

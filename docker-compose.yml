@@ -1,0 +1,9 @@
+services:
+  newsletter:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      # Los borradores se persisten fuera del contenedor
+      - ./drafts:/app/drafts
+    restart: unless-stopped

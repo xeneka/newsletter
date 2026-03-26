@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viamed al Día</title>
+  {% if font and font.font_url %}
+  <!--[if !mso]><!-->
+  <style>@import url('{{ font.font_url }}');</style>
+  <!--<![endif]-->
+  {% endif %}
+</head>
+
+<body style="margin:0; padding:0; background-color:#f2f2f2;">
+  <!-- Preheader (oculto) -->
+  <div style="display:none; font-size:1px; color:#f2f2f2; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    {{ header.preheader_text }}
+  </div>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f2f2f2" style="background-color:#f2f2f2;">
+    <tr>
+      <td align="center" style="padding:0;">
+        <!-- CONTENEDOR -->
+        <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="width:600px; max-width:600px; background-color:#ffffff;">
+
+          {% include "email/header.html" %}
+
+          {{ blocks_html }}
+
+          {% include "email/footer.html" %}
+
+        </table>
+        <!-- /CONTENEDOR -->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

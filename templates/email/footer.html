@@ -1,0 +1,43 @@
+          <!-- FOOTER -->
+          <tr>
+            <td bgcolor="#3f4a4f" style="background-color:#37474a; padding:16px 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td align="left" valign="middle" style="width:55%;">
+                    <a href="{{ footer.logo_link }}" target="_blank">
+                    <img src="{{ footer.logo_url }}"
+                         alt="Viamed"
+                         width="90"
+                         style="display:block; border:0; height:auto;" />
+                    </a>
+                  </td>
+                  <td align="right" valign="middle" style="width:45%;">
+                    <!-- Iconos RRSS -->
+                    <table border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        {% for link in footer.social_links %}
+                        <td style="padding-left:8px;">
+                          <a href="{{ link.url }}" target="_blank">
+                            <img src="{{ link.icon_url }}" alt="{{ link.platform }}" width="23" style="display:block; border:0;" />
+                          </a>
+                        </td>
+                        {% endfor %}
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- BAJA -->
+          <tr>
+            <td align="center" style="padding:16px 20px 24px 20px; background-color:#ffffff;">
+              <div style="font-family:Arial, sans-serif; font-size:11.5px; line-height:16px; color:#7a7a7a;">
+                {{ footer.unsubscribe_pretext }}
+                <br />
+                {{ footer.unsubscribe_label }}
+                <a href="{{ footer.unsubscribe_url }}" target="_blank" style="color:#11a7c7; text-decoration:none; font-weight:700;">{{ footer.unsubscribe_text }}</a>.
+              </div>
+            </td>
+          </tr>
