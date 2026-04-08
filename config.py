@@ -178,6 +178,8 @@ BLOCK_TYPES = {
         "label": "Contenedor celeste vertical (artículos)",
         "template": "email/blocks/contenedor_celeste_vertical.html",
         "defaults": {
+            "header_line1": "Hoy te hablamos de...",
+            "header_line2": "",
             "items": [
                 {
                     "image_url": "",
@@ -190,6 +192,8 @@ BLOCK_TYPES = {
             ],
         },
         "fields": [
+            {"name": "header_line1", "label": "Línea cabecera 1 (negrita)", "type": "text"},
+            {"name": "header_line2", "label": "Línea cabecera 2 (normal)", "type": "text"},
             {
                 "name": "items",
                 "label": "Artículos",
