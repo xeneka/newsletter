@@ -58,6 +58,18 @@ DEFAULT_FOOTER = {
 
 # Each block type: template path, human label, and default data for new blocks
 BLOCK_TYPES = {
+    "titulo_seccion_oscuro": {
+        "label": "Título sección oscuro (fondo azul)",
+        "template": "email/blocks/titulo_seccion_oscuro.html",
+        "defaults": {
+            "title": "Espacio para el ocio",
+            "subtitle": "La cara B",
+        },
+        "fields": [
+            {"name": "title", "label": "Título principal", "type": "text"},
+            {"name": "subtitle", "label": "Subtítulo (junto al elemento)", "type": "text"},
+        ],
+    },
     "titulo_seccion": {
         "label": "Título de sección",
         "template": "email/blocks/titulo_seccion.html",
@@ -242,6 +254,7 @@ BLOCK_TYPES = {
 
 # Ordered list for the UI dropdown
 BLOCK_TYPE_ORDER = [
+    "titulo_seccion_oscuro",
     "titulo_seccion",
     "imagen_izq_texto_dcha",
     "texto_izq_imagen_dcha",
