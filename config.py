@@ -21,7 +21,7 @@ DEFAULT_FONT = {
 
 DEFAULT_HEADER = {
     "preheader_text": "VIAMED AL DÍA · La salud nos conecta",
-    "banner_image_url": "https://www.viamedsalud.com/wp-content/uploads/2026/02/banner-1-portada.jpg",
+    "banner_image_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/viamed-banner-newsletter-1.png",
     "banner_alt": "Viamed al Día · La salud nos conecta",
 }
 
