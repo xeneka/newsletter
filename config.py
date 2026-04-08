@@ -174,6 +174,37 @@ BLOCK_TYPES = {
             {"name": "button_url", "label": "URL del botón", "type": "text"},
         ],
     },
+    "contenedor_celeste_vertical": {
+        "label": "Contenedor celeste vertical (artículos)",
+        "template": "email/blocks/contenedor_celeste_vertical.html",
+        "defaults": {
+            "items": [
+                {
+                    "image_url": "",
+                    "image_alt": "Imagen",
+                    "title": "Título del artículo",
+                    "text_html": "Texto de la noticia con <strong>negrita</strong>",
+                    "button_text": "Saber más",
+                    "button_url": "#",
+                }
+            ],
+        },
+        "fields": [
+            {
+                "name": "items",
+                "label": "Artículos",
+                "type": "sub_items",
+                "item_fields": [
+                    {"name": "image_url", "label": "URL de imagen", "type": "text"},
+                    {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
+                    {"name": "title", "label": "Título", "type": "text"},
+                    {"name": "text_html", "label": "Texto (acepta HTML)", "type": "textarea"},
+                    {"name": "button_text", "label": "Texto del botón", "type": "text"},
+                    {"name": "button_url", "label": "URL del botón", "type": "text"},
+                ],
+            }
+        ],
+    },
     "contenedor_celeste": {
         "label": "Contenedor celeste (mini-noticias)",
         "template": "email/blocks/contenedor_celeste.html",
@@ -214,4 +245,5 @@ BLOCK_TYPE_ORDER = [
     "separador_imagen",
     "bloque_grande_oscuro",
     "contenedor_celeste",
+    "contenedor_celeste_vertical",
 ]

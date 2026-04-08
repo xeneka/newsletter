@@ -1,0 +1,56 @@
+<!-- CONTENEDOR CELESTE VERTICAL -->
+<tr>
+  <td style="padding:30px 30px 30px 30px; background-color:#d6eff9;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+{% for item in items %}
+      <!-- ARTÍCULO {{ loop.index }} -->
+      <tr>
+        <td style="padding:{% if loop.last %}0{% else %}0 0 30px 0{% endif %};">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <!-- Imagen arriba centrada -->
+            <tr>
+              <td align="center" style="padding:0 0 18px 0;">
+                <img src="{{ item.image_url }}"
+                     alt="{{ item.image_alt }}"
+                     width="500"
+                     style="display:block; width:100%; max-width:500px; height:auto; border:0; border-radius:10px;" />
+              </td>
+            </tr>
+            <!-- Título centrado -->
+            <tr>
+              <td align="center" style="padding:0 0 12px 0;">
+                <div style="font-family:Arial, sans-serif; font-size:20px; line-height:24px; color:#003a5d; font-weight:700; text-align:center;">
+                  {{ item.title }}
+                </div>
+              </td>
+            </tr>
+            <!-- Texto centrado -->
+            <tr>
+              <td align="center" style="padding:0 0 20px 0;">
+                <div style="font-family:Arial, sans-serif; font-size:17px; line-height:22px; color:#3e3e3e; text-align:center;">
+                  {{ item.text_html | safe }}
+                </div>
+              </td>
+            </tr>
+            <!-- Botón centrado -->
+            <tr>
+              <td align="center" style="padding:0;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" bgcolor="#003a5d" style="border-radius:20px;">
+                      <a href="{{ item.button_url }}" target="_blank"
+                         style="display:inline-block; color:#ffffff; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px; text-decoration:none; padding:15px 45px; border-radius:20px;">
+                        {{ item.button_text }}
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+{% endfor %}
+    </table>
+  </td>
+</tr>
