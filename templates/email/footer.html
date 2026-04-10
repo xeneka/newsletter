@@ -1,24 +1,25 @@
           <!-- FOOTER -->
           <tr>
-            <td bgcolor="#3f4a4f" style="background-color:#37474a; padding:16px 20px;">
+            <td background="https://www.viamedsalud.com/wp-content/uploads/2025/01/fondo-footer.jpg"
+                bgcolor="#003a5d"
+                style="background: url('https://www.viamedsalud.com/wp-content/uploads/2025/01/fondo-footer.jpg') center top / cover repeat; padding:30px 20px 20px 20px;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td align="left" valign="middle" style="width:55%;">
+                  <td align="left" valign="middle" style="width:40%;">
                     <a href="{{ footer.logo_link }}" target="_blank">
-                    <img src="{{ footer.logo_url }}"
-                         alt="Viamed"
-                         width="90"
-                         style="display:block; border:0; height:auto;" />
+                      <img src="{{ footer.logo_url }}"
+                           alt="Viamed Salud"
+                           width="150"
+                           style="display:block; border:0; width:150px; height:auto;" />
                     </a>
                   </td>
-                  <td align="right" valign="middle" style="width:45%;">
-                    <!-- Iconos RRSS -->
+                  <td align="right" valign="middle" style="width:60%;">
                     <table border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         {% for link in footer.social_links %}
-                        <td style="padding-left:8px;">
+                        <td style="padding-left:10px;" valign="top">
                           <a href="{{ link.url }}" target="_blank">
-                            <img src="{{ link.icon_url }}" alt="{{ link.platform }}" width="23" style="display:block; border:0;" />
+                            <img src="{{ link.icon_url }}" alt="{{ link.platform }}" width="60" style="display:block; border:0; width:60px; height:auto;" />
                           </a>
                         </td>
                         {% endfor %}

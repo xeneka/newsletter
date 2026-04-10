@@ -26,28 +26,33 @@ DEFAULT_HEADER = {
 }
 
 DEFAULT_FOOTER = {
-    "logo_url": "https://www.viamedsalud.com/wp-content/uploads/2024/05/logo-viamed_newsletter.png",
+    "logo_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/viamed-logo.png",
     "logo_link": "https://www.viamedsalud.com/",
     "social_links": [
         {
-            "platform": "youtube",
+            "platform": "YouTube",
             "url": "https://www.youtube.com/channel/UCbHkTIBhmd9VlrkSbk0BO3A",
-            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2026/02/youtube-blanco.png",
+            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/redes-youtube.png",
         },
         {
-            "platform": "instagram",
+            "platform": "Instagram",
             "url": "https://www.instagram.com/viamedsalud/?hl=es",
-            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2026/02/insta-blanco.png",
+            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/redes-insta.png",
         },
         {
-            "platform": "tiktok",
+            "platform": "X (Twitter)",
+            "url": "https://x.com/i/flow/login?redirect_after_login=%2Fviamedsalud",
+            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/redes-x.png",
+        },
+        {
+            "platform": "TikTok",
             "url": "https://www.tiktok.com/@viamedsalud?lang=es",
-            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2026/02/tiktok-blanco.png",
+            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/redes-tiktok.png",
         },
         {
-            "platform": "linkedin",
-            "url": "https://www.linkedin.com/company/grupo-viamed-salud",
-            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2026/02/linkedin-blanco.png",
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/company/grupo-viamed-salud/posts/?feedView=all",
+            "icon_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/redes-linkedin.png",
         },
     ],
     "unsubscribe_url": "https://www.viamedsalud.com/politica-de-privacidad/formulario-de-baja/",
