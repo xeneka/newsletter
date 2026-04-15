@@ -674,17 +674,45 @@
       const row = document.createElement("div");
       row.className = "social-link-row";
       row.style.padding = "0 12px";
-      row.innerHTML = `
-        <span class="social-label">${link.platform}</span>
-        <input type="text" placeholder="URL" value="${link.url || ""}" data-social-field="url" data-social-idx="${i}" />
-        <input type="text" placeholder="Icono URL" value="${link.icon_url || ""}" data-social-field="icon_url" data-social-idx="${i}" />
-      `;
-      row.querySelectorAll("input").forEach((inp) => {
-        inp.addEventListener("input", () => {
-          state.footer.social_links[i][inp.dataset.socialField] = inp.value;
-          schedulePreview();
-        });
+
+      const platformLabel = document.createElement("span");
+      platformLabel.className = "social-label";
+      platformLabel.textContent = link.platform;
+
+      const inputUrl = document.createElement("input");
+      inputUrl.type = "text";
+      inputUrl.placeholder = "URL";
+      inputUrl.value = link.url || "";
+
+      const inputIcon = document.createElement("input");
+      inputIcon.type = "text";
+      inputIcon.placeholder = "Icono URL";
+      inputIcon.value = link.icon_url || "";
+
+      const btnRemove = document.createElement("button");
+      btnRemove.type = "button";
+      btnRemove.textContent = "×";
+      btnRemove.title = "Quitar red social";
+      btnRemove.style.cssText = "padding:0 6px; border:1px solid #ccc; border-radius:3px; background:#fff; cursor:pointer; font-size:14px; color:#888; flex-shrink:0;";
+
+      inputUrl.addEventListener("input", () => {
+        state.footer.social_links[i].url = inputUrl.value;
+        schedulePreview();
       });
+      inputIcon.addEventListener("input", () => {
+        state.footer.social_links[i].icon_url = inputIcon.value;
+        schedulePreview();
+      });
+      btnRemove.addEventListener("click", () => {
+        state.footer.social_links.splice(i, 1);
+        renderSocialLinks();
+        schedulePreview();
+      });
+
+      row.appendChild(platformLabel);
+      row.appendChild(inputUrl);
+      row.appendChild(inputIcon);
+      row.appendChild(btnRemove);
       container.appendChild(row);
     });
   }
