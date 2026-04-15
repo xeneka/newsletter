@@ -1,7 +1,9 @@
 """Flask application for Viamed newsletter builder."""
 
+import base64
 import json
 import os
+import re
 import uuid
 from pathlib import Path
 
@@ -117,6 +119,11 @@ def api_preview():
 def api_export():
     data = request.get_json(force=True)
     html = render_newsletter_html(data)
+    # Embed the state so the file can be re-imported later
+    state_b64 = base64.b64encode(
+        json.dumps(data, ensure_ascii=False).encode("utf-8")
+    ).decode("ascii")
+    html += f"\n<!-- VIAMED_STATE:{state_b64} -->"
     title = data.get("title", "newsletter")
     filename = title.replace(" ", "_") + ".html"
     return (
@@ -127,6 +134,21 @@ def api_export():
             "Content-Disposition": f'attachment; filename="{filename}"',
         },
     )
+
+
+@app.route("/api/import", methods=["POST"])
+def api_import():
+    html_text = request.get_data(as_text=True)
+    m = re.search(r"<!-- VIAMED_STATE:([A-Za-z0-9+/=]+) -->", html_text)
+    if not m:
+        return jsonify({"error": "El archivo no contiene estado exportado desde esta aplicación."}), 400
+    try:
+        state = json.loads(base64.b64decode(m.group(1)).decode("utf-8"))
+    except Exception:
+        return jsonify({"error": "El estado embebido en el archivo está corrupto."}), 400
+    # Strip the id so it's treated as a new unsaved newsletter
+    state.pop("id", None)
+    return jsonify(state)
 
 
 # ---------------------------------------------------------------------------

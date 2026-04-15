@@ -26,6 +26,8 @@
   const $btnSave = document.getElementById("btn-save-draft");
   const $btnLoad = document.getElementById("btn-load-draft");
   const $btnDelete = document.getElementById("btn-delete-draft");
+  const $btnImport = document.getElementById("btn-import");
+  const $importFileInput = document.getElementById("import-file-input");
   const $draftSelect = document.getElementById("draft-select");
   const $draftTitle = document.getElementById("draft-title");
 
@@ -88,6 +90,8 @@
     $btnSave.addEventListener("click", saveDraft);
     $btnLoad.addEventListener("click", loadDraft);
     $btnDelete.addEventListener("click", deleteDraft);
+    $btnImport.addEventListener("click", () => $importFileInput.click());
+    $importFileInput.addEventListener("change", doImport);
 
     // Load drafts list
     await refreshDraftsList();
@@ -296,6 +300,73 @@
 
   // ── Richtext editor helper ─────────────────────────────────────────────
   function createRichtextEditor(container, data, fieldName) {
+    // Editor creado primero para que los callbacks del stepper lo usen
+    const editor = document.createElement("div");
+    editor.className = "richtext-editor";
+    editor.contentEditable = "true";
+    editor.innerHTML = data[fieldName] || "";
+
+    // Helper stepper: [label − valor +], nunca roba el foco
+    // onStep(next) define qué hace cada botón al cambiar
+    function makeStepper(labelText, initialVal, min, max, onStep) {
+      const group = document.createElement("div");
+      group.className = "richtext-size-group";
+
+      const lbl = document.createElement("label");
+      lbl.textContent = labelText;
+
+      const btnMinus = document.createElement("button");
+      btnMinus.type = "button";
+      btnMinus.textContent = "−";
+
+      const display = document.createElement("span");
+      display.className = "richtext-size-display";
+      display.textContent = String(initialVal);
+
+      const btnPlus = document.createElement("button");
+      btnPlus.type = "button";
+      btnPlus.textContent = "+";
+
+      function step(delta) {
+        const current = parseInt(display.textContent, 10) || initialVal;
+        const next = Math.min(max, Math.max(min, current + delta));
+        display.textContent = String(next);
+        onStep(next);
+      }
+
+      btnMinus.addEventListener("mousedown", (e) => { e.preventDefault(); step(-1); });
+      btnPlus.addEventListener("mousedown", (e) => { e.preventDefault(); step(1); });
+
+      group.appendChild(lbl);
+      group.appendChild(btnMinus);
+      group.appendChild(display);
+      group.appendChild(btnPlus);
+      return group;
+    }
+
+    // fs: aplica font-size inline al texto seleccionado (como B/I/A)
+    const fsStepper = makeStepper("fs", 13, 8, 72, function(next) {
+      editor.focus();
+      // execCommand con font tags como puente para poder usar px
+      document.execCommand("styleWithCSS", false, false);
+      document.execCommand("fontSize", false, "7");
+      Array.from(editor.querySelectorAll("font[size='7']")).forEach(function(el) {
+        const span = document.createElement("span");
+        span.style.fontSize = next + "px";
+        while (el.firstChild) span.appendChild(el.firstChild);
+        el.parentNode.replaceChild(span, el);
+      });
+      data[fieldName] = editor.innerHTML;
+      schedulePreview();
+    });
+
+    // lh: cambia line-height del div wrapper (propiedad de bloque)
+    const lhKey = fieldName + "_line_height";
+    const lhStepper = makeStepper("lh", parseInt(data[lhKey] || "20", 10), 8, 100, function(next) {
+      data[lhKey] = String(next);
+      schedulePreview();
+    });
+
     const toolbar = document.createElement("div");
     toolbar.className = "richtext-toolbar";
 
@@ -321,12 +392,9 @@
     toolbar.appendChild(btnBold);
     toolbar.appendChild(btnItalic);
     toolbar.appendChild(colorLabel);
+    toolbar.appendChild(fsStepper);
+    toolbar.appendChild(lhStepper);
     container.appendChild(toolbar);
-
-    const editor = document.createElement("div");
-    editor.className = "richtext-editor";
-    editor.contentEditable = "true";
-    editor.innerHTML = data[fieldName] || "";
 
     btnBold.addEventListener("mousedown", (e) => {
       e.preventDefault();
@@ -428,6 +496,54 @@
     } catch (err) {
       console.error("Export error:", err);
     }
+  }
+
+  // ── Import ─────────────────────────────────────────────────────────────
+  async function doImport(e) {
+    const file = e.target.files[0];
+    // Reset input so the same file can be re-imported if needed
+    $importFileInput.value = "";
+    if (!file) return;
+
+    if (state.blocks.length > 0 || state.id) {
+      if (!confirm("¿Descartar el contenido actual e importar el HTML seleccionado?")) return;
+    }
+
+    const htmlText = await file.text();
+    let res;
+    try {
+      res = await fetch("/api/import", {
+        method: "POST",
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+        body: htmlText,
+      });
+    } catch (err) {
+      alert("Error de red al importar.");
+      return;
+    }
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "No se pudo importar el archivo.");
+      return;
+    }
+
+    state = data;
+    if (!state.font) state.font = {};
+    $draftTitle.value = state.title || "";
+    $draftSelect.value = "";
+    document.querySelectorAll("[data-header]").forEach((input) => {
+      input.value = state.header[input.dataset.header] || "";
+    });
+    document.querySelectorAll("[data-font]").forEach((input) => {
+      input.value = state.font[input.dataset.font] || "";
+    });
+    document.querySelectorAll("[data-footer]").forEach((input) => {
+      input.value = state.footer[input.dataset.footer] || "";
+    });
+    renderSocialLinks();
+    renderBlocks();
+    doPreview();
   }
 
   // ── Drafts ─────────────────────────────────────────────────────────────
