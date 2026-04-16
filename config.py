@@ -202,6 +202,7 @@ BLOCK_TYPES = {
                     "image_url": "",
                     "image_alt": "Imagen",
                     "title": "Título del artículo",
+                    "author": "",
                     "text_html": "Texto de la noticia con <strong>negrita</strong>",
                     "button_text": "Saber más",
                     "button_url": "#",
@@ -219,6 +220,7 @@ BLOCK_TYPES = {
                     {"name": "image_url", "label": "URL de imagen", "type": "text"},
                     {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
                     {"name": "title", "label": "Título", "type": "text"},
+                    {"name": "author", "label": "Autor (opcional, en cian)", "type": "text"},
                     {"name": "text_html", "label": "Texto (acepta HTML)", "type": "textarea"},
                     {"name": "button_text", "label": "Texto del botón", "type": "text"},
                     {"name": "button_url", "label": "URL del botón", "type": "text"},
@@ -255,6 +257,72 @@ BLOCK_TYPES = {
             }
         ],
     },
+    "contenedor_blanco": {
+        "label": "Contenedor blanco (mini-noticias)",
+        "template": "email/blocks/contenedor_blanco.html",
+        "defaults": {
+            "items": [
+                {
+                    "text_html": "Texto de la noticia con <strong>negrita</strong>",
+                    "image_url": "",
+                    "image_alt": "Imagen",
+                    "button_text": "Leer más",
+                    "button_url": "#",
+                }
+            ],
+        },
+        "fields": [
+            {
+                "name": "items",
+                "label": "Mini-noticias",
+                "type": "sub_items",
+                "item_fields": [
+                    {"name": "text_html", "label": "Texto (acepta HTML)", "type": "textarea"},
+                    {"name": "image_url", "label": "URL de imagen", "type": "text"},
+                    {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
+                    {"name": "button_text", "label": "Texto del botón", "type": "text"},
+                    {"name": "button_url", "label": "URL del botón", "type": "text"},
+                ],
+            }
+        ],
+    },
+    "contenedor_blanco_vertical": {
+        "label": "Contenedor blanco vertical (artículos)",
+        "template": "email/blocks/contenedor_blanco_vertical.html",
+        "defaults": {
+            "header_line1": "Hoy te hablamos de...",
+            "header_line2": "",
+            "items": [
+                {
+                    "image_url": "",
+                    "image_alt": "Imagen",
+                    "title": "Título del artículo",
+                    "author": "",
+                    "text_html": "Texto de la noticia con <strong>negrita</strong>",
+                    "button_text": "Saber más",
+                    "button_url": "#",
+                }
+            ],
+        },
+        "fields": [
+            {"name": "header_line1", "label": "Línea cabecera 1 (negrita)", "type": "text"},
+            {"name": "header_line2", "label": "Línea cabecera 2 (normal)", "type": "text"},
+            {
+                "name": "items",
+                "label": "Artículos",
+                "type": "sub_items",
+                "item_fields": [
+                    {"name": "image_url", "label": "URL de imagen", "type": "text"},
+                    {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
+                    {"name": "title", "label": "Título", "type": "text"},
+                    {"name": "author", "label": "Autor (opcional, en cian)", "type": "text"},
+                    {"name": "text_html", "label": "Texto (acepta HTML)", "type": "textarea"},
+                    {"name": "button_text", "label": "Texto del botón", "type": "text"},
+                    {"name": "button_url", "label": "URL del botón", "type": "text"},
+                ],
+            }
+        ],
+    },
 }
 
 # Ordered list for the UI dropdown
@@ -268,4 +336,6 @@ BLOCK_TYPE_ORDER = [
     "bloque_grande_oscuro",
     "contenedor_celeste",
     "contenedor_celeste_vertical",
+    "contenedor_blanco",
+    "contenedor_blanco_vertical",
 ]
