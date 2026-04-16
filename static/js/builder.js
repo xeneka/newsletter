@@ -389,9 +389,16 @@
     colorInput.title = "Color de texto";
     colorLabel.appendChild(colorInput);
 
+    const btnCyan = document.createElement("button");
+    btnCyan.type = "button";
+    btnCyan.textContent = "A";
+    btnCyan.title = "Color cian (#00b2e3)";
+    btnCyan.style.cssText = "color:#00b2e3; font-weight:700;";
+
     toolbar.appendChild(btnBold);
     toolbar.appendChild(btnItalic);
     toolbar.appendChild(colorLabel);
+    toolbar.appendChild(btnCyan);
     toolbar.appendChild(fsStepper);
     toolbar.appendChild(lhStepper);
     container.appendChild(toolbar);
@@ -407,6 +414,13 @@
     colorInput.addEventListener("input", () => {
       editor.focus();
       document.execCommand("foreColor", false, colorInput.value);
+      data[fieldName] = editor.innerHTML;
+      schedulePreview();
+    });
+    btnCyan.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      editor.focus();
+      document.execCommand("foreColor", false, "#00b2e3");
       data[fieldName] = editor.innerHTML;
       schedulePreview();
     });
