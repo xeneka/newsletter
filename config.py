@@ -21,7 +21,7 @@ DEFAULT_FONT = {
 
 DEFAULT_HEADER = {
     "preheader_text": "VIAMED AL DÍA · La salud nos conecta",
-    "banner_image_url": "https://www.viamedsalud.com/wp-content/uploads/2025/01/viamed-banner-newsletter-1.png",
+    "banner_image_url": "https://espaciosalud.viamedsalud.com/wp-content/uploads/2026/04/banner-1-portada.jpg",
     "banner_alt": "Viamed al Día · La salud nos conecta",
 }
 
@@ -93,6 +93,7 @@ BLOCK_TYPES = {
             "description_line_height": "20",
             "button_text": "Leer más",
             "button_url": "#",
+            "mobile_image_top": True,
         },
         "fields": [
             {"name": "image_url", "label": "URL de imagen", "type": "text"},
@@ -101,6 +102,7 @@ BLOCK_TYPES = {
             {"name": "description", "label": "Descripción", "type": "richtext"},
             {"name": "button_text", "label": "Texto del botón", "type": "text"},
             {"name": "button_url", "label": "URL del botón", "type": "text"},
+            {"name": "mobile_image_top", "label": "Imagen arriba en móvil", "type": "checkbox"},
         ],
     },
     "texto_izq_imagen_dcha": {
@@ -114,6 +116,7 @@ BLOCK_TYPES = {
             "description_line_height": "20",
             "button_text": "Leer más",
             "button_url": "#",
+            "mobile_image_top": True,
         },
         "fields": [
             {"name": "image_url", "label": "URL de imagen", "type": "text"},
@@ -122,6 +125,7 @@ BLOCK_TYPES = {
             {"name": "description", "label": "Descripción", "type": "richtext"},
             {"name": "button_text", "label": "Texto del botón", "type": "text"},
             {"name": "button_url", "label": "URL del botón", "type": "text"},
+            {"name": "mobile_image_top", "label": "Imagen arriba en móvil", "type": "checkbox"},
         ],
     },
     "grid_2_columnas": {

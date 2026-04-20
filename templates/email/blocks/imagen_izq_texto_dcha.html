@@ -2,21 +2,60 @@
           <tr>
             <td style="padding:0px; background-color:#ffffff;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#efefef" style="background-color:#efefef;">
-                <tr>
-                  <td width="50%" valign="top" style="padding:30px 15px 10px 30px ;">
-                    <img src="{{ image_url }}"
-                         alt="{{ image_alt }}"
-                         width="340"
-                         style="display:block; width:100%; max-width:340px; height:auto; border:0; border-radius:10px;" />
-                  </td>
-                  <td width="50%" valign="middle" style="padding:16px 20px 16px 15px;">
+                {% if mobile_image_top == false or mobile_image_top == "false" %}
+                {# Texto arriba en móvil: texto primero en DOM, imagen segunda; dir="rtl" invierte visual en desktop #}
+                <tr dir="rtl">
+                  <td width="50%" valign="top" dir="ltr"
+                      class="col-txt"
+                      style="padding:16px 20px 16px 15px;">
                     <div style="font-family:Arial, sans-serif; font-size:18px; line-height:18px; color:#003a5d; font-weight:700;">
                       {{ title }}
                     </div>
                     <div style="height:12px; line-height:12px; font-size:12px;">&nbsp;</div>
-                     <div style="font-family:Arial, sans-serif; font-size:13px; line-height:{{ description_line_height | default('20') }}px; color:#555555; font-weight:400; padding-bottom:20px;">
-                           {{ description | safe }}</div>
-                          <table border="0" cellspacing="0" cellpadding="0">
+                    <div style="font-family:Arial, sans-serif; font-size:13px; line-height:{{ description_line_height | default('20') }}px; color:#555555; font-weight:400; padding-bottom:20px;">
+                      {{ description | safe }}</div>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td align="center" bgcolor="#37474a" style="border-radius:20px;">
+                          <a href="{{ button_url }}"
+                             target="_blank"
+                             style="display:inline-block; color:#ffffff; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px; text-decoration:none; padding:15px 45px; border-radius:20px;">
+                            {{ button_text }}
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="50%" valign="top" dir="ltr"
+                      class="col-img"
+                      style="padding:30px 15px 10px 30px;">
+                    <img src="{{ image_url }}"
+                         alt="{{ image_alt }}"
+                         class="img-col"
+                         style="display:block; width:100%; max-width:100%; height:auto; border:0; border-radius:10px;" />
+                  </td>
+                </tr>
+                {% else %}
+                {# Imagen arriba en móvil (por defecto): imagen primera en DOM #}
+                <tr>
+                  <td width="50%" valign="top"
+                      class="col-img"
+                      style="padding:30px 15px 10px 30px;">
+                    <img src="{{ image_url }}"
+                         alt="{{ image_alt }}"
+                         class="img-col"
+                         style="display:block; width:100%; max-width:100%; height:auto; border:0; border-radius:10px;" />
+                  </td>
+                  <td width="50%" valign="top"
+                      class="col-txt"
+                      style="padding:16px 20px 16px 15px;">
+                    <div style="font-family:Arial, sans-serif; font-size:18px; line-height:18px; color:#003a5d; font-weight:700;">
+                      {{ title }}
+                    </div>
+                    <div style="height:12px; line-height:12px; font-size:12px;">&nbsp;</div>
+                    <div style="font-family:Arial, sans-serif; font-size:13px; line-height:{{ description_line_height | default('20') }}px; color:#555555; font-weight:400; padding-bottom:20px;">
+                      {{ description | safe }}</div>
+                    <table border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td align="center" bgcolor="#37474a" style="border-radius:20px;">
                           <a href="{{ button_url }}"
@@ -29,6 +68,7 @@
                     </table>
                   </td>
                 </tr>
+                {% endif %}
               </table>
             </td>
           </tr>

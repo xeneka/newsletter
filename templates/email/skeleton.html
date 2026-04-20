@@ -4,6 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Viamed al Día</title>
+  <style type="text/css">
+    /* ── Resets universales ── */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; }
+
+    /* ── Mobile: apilado de columnas ── */
+    @media only screen and (max-width: 620px) {
+      table[class="container"] {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      td[class="col-img"] {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 20px 20px 0 20px !important;
+        text-align: center !important;
+      }
+      td[class="col-txt"] {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 16px 20px 24px 20px !important;
+      }
+      td[class="col-dark-img"] {
+        display: block !important;
+        width: 100% !important;
+      }
+      td[class="col-dark-txt"] {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 24px 20px 24px 20px !important;
+      }
+      td[class="col-card"] {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 20px 24px 20px !important;
+      }
+      img[class="img-col"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+      }
+      img[class="img-card"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+      }
+    }
+  </style>
   {% if font and font.font_url %}
   <!--[if !mso]><!-->
   <style>@import url('{{ font.font_url }}');</style>
@@ -21,7 +74,9 @@
     <tr>
       <td align="center" style="padding:0;">
         <!-- CONTENEDOR -->
-        <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="width:600px; max-width:600px; background-color:#ffffff;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff"
+               class="container"
+               style="width:600px; max-width:600px; background-color:#ffffff;">
 
           {% include "email/header.html" %}
 

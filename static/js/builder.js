@@ -207,6 +207,23 @@
       } else if (field.type === "color") {
         input = document.createElement("input");
         input.type = "color";
+      } else if (field.type === "checkbox") {
+        // Reuse the label already created, but reorder so checkbox comes first
+        group.removeChild(label);
+        input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = `chk-${field.name}-${Math.random().toString(36).slice(2)}`;
+        input.checked = data[field.name] === true || data[field.name] === "true";
+        input.addEventListener("change", () => {
+          data[field.name] = input.checked;
+          schedulePreview();
+        });
+        label.htmlFor = input.id;
+        label.className = "checkbox-label";
+        group.appendChild(input);
+        group.appendChild(label);
+        container.appendChild(group);
+        return;
       } else {
         input = document.createElement("input");
         input.type = "text";
