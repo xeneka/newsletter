@@ -1,9 +1,15 @@
           <!-- SEPARADOR IMAGEN -->
           <tr>
             <td align="center" style="padding:0; background-color:#ffffff;">
+              {% if link_url %}
+              <a href="{{ link_url }}" target="_blank" style="display:block; border:0;">
+              {% endif %}
               <img src="{{ image_url }}"
                    alt="{{ image_alt }}"
                    width="600"
                    style="display:block; width:100%; max-width:600px; height:auto; border:0;" />
+              {% if link_url %}
+              </a>
+              {% endif %}
             </td>
           </tr>

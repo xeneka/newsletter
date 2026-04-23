@@ -168,10 +168,12 @@ BLOCK_TYPES = {
         "defaults": {
             "image_url": "",
             "image_alt": "Separador",
+            "link_url": "",
         },
         "fields": [
             {"name": "image_url", "label": "URL de imagen", "type": "text"},
             {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
+            {"name": "link_url", "label": "URL de enlace (opcional)", "type": "text"},
         ],
     },
     "bloque_grande_oscuro": {
