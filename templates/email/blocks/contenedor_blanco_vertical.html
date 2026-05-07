@@ -7,12 +7,12 @@
       <tr>
         <td align="center" style="padding:0 0 24px 0;">
 {% if header_line1 %}
-          <div style="font-family:Arial, sans-serif; font-size:24px; line-height:28px; color:#00b2e3; font-weight:700; text-align:center;">
+          <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:28px; color:#00b2e3; font-weight:700; text-align:center;">
             {{ header_line1 }}
           </div>
 {% endif %}
 {% if header_line2 %}
-          <div style="font-family:Arial, sans-serif; font-size:20px; line-height:26px; color:#00b2e3; font-weight:400; text-align:center; padding-top:6px;">
+          <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:26px; color:#00b2e3; font-weight:400; text-align:center; padding-top:6px;">
             {{ header_line2 }}
           </div>
 {% endif %}
@@ -36,7 +36,7 @@
             <!-- Título centrado -->
             <tr>
               <td align="center" style="padding:0 0 {% if item.author %}6px{% else %}12px{% endif %} 0;">
-                <div style="font-family:Arial, sans-serif; font-size:20px; line-height:24px; color:#003a5d; font-weight:700; text-align:center;">
+                <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:24px; color:#003a5d; font-weight:700; text-align:center;">
                   {{ item.title }}
                 </div>
               </td>
@@ -45,14 +45,14 @@
             <!-- Autor centrado -->
             <tr>
               <td align="center" style="padding:0 0 12px 0;">
-                <span style="font-family:Arial, sans-serif; font-size:15px; line-height:20px; color:#00b2e3;">{{ item.author }}</span>
+                <span style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:20px; color:#00b2e3;">{{ item.author }}</span>
               </td>
             </tr>
 {% endif %}
             <!-- Texto centrado -->
             <tr>
               <td align="center" style="padding:0 0 20px 0;">
-                <div style="font-family:Arial, sans-serif; font-size:17px; line-height:22px; color:#3e3e3e; text-align:center;">
+                <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:17px; line-height:22px; color:#3e3e3e; text-align:center;">
                   {{ item.text_html | safe }}
                 </div>
               </td>
