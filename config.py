@@ -169,11 +169,15 @@ BLOCK_TYPES = {
             "image_url": "",
             "image_alt": "Separador",
             "link_url": "",
+            "padding_top": "",
+            "padding_bottom": "",
         },
         "fields": [
             {"name": "image_url", "label": "URL de imagen", "type": "text"},
             {"name": "image_alt", "label": "Alt de imagen", "type": "text"},
             {"name": "link_url", "label": "URL de enlace (opcional)", "type": "text"},
+            {"name": "padding_top", "label": "Padding superior px (opcional)", "type": "text"},
+            {"name": "padding_bottom", "label": "Padding inferior px (opcional)", "type": "text"},
         ],
     },
     "bloque_grande_oscuro": {

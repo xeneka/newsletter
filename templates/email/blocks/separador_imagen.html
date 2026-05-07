@@ -1,6 +1,6 @@
           <!-- SEPARADOR IMAGEN -->
           <tr>
-            <td align="center" style="padding:0; background-color:#ffffff;">
+            <td align="center" style="padding:{{ padding_top if padding_top else '0' }}px 0 {{ padding_bottom if padding_bottom else '0' }}px 0; background-color:#ffffff;">
               {% if link_url %}
               <a href="{{ link_url }}" target="_blank" style="display:block; border:0;">
               {% endif %}
