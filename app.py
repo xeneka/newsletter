@@ -54,6 +54,9 @@ def render_newsletter_html(data: dict) -> str:
         blocks_html=Markup("\n".join(rendered_blocks)),
     )
 
+    # Strip font-family:inherit from richtext content (Outlook ignores inherit)
+    full_html = re.sub(r'font-family\s*:\s*inherit\s*;?\s*', '', full_html)
+
     # Inject custom font into inline font-family declarations
     font_name = (font.get("font_name") or "").strip()
     if font_name:
